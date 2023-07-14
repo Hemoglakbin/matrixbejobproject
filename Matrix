@@ -1,1 +1,40 @@
+import random
 
+def generar_matriz(filas, columnas):
+    matriz = [[random.randint(0, 9) for _ in range(columnas)] for _ in range(filas)]
+    return matriz
+
+def imprimir_matriz(matriz):
+    for fila in matriz:
+        print(fila)
+
+def calcular_suma_filas(matriz):
+    return [sum(fila) for fila in matriz]
+
+def calcular_suma_columnas(matriz):
+    return [sum(columna) for columna in zip(*matriz)]
+
+while True:
+    try:
+        filas = int(input("Ingrese el número de filas de la matriz (rango 0-50): "))
+        columnas = int(input("Ingrese el número de columnas de la matriz (rango 0-50): "))
+        if 0 <= filas <= 50 and 0 <= columnas <= 50:
+            break
+        else:
+            print("Solo se permiten valores entre 0 y 50.")
+    except ValueError:
+        print("Solo se admiten números (0-50).")
+
+matriz = generar_matriz(filas, columnas)
+
+print("Resultado:")
+imprimir_matriz(matriz)
+
+suma_filas = calcular_suma_filas(matriz)
+suma_columnas = calcular_suma_columnas(matriz)
+
+print("Suma de filas:")
+print(suma_filas)
+
+print("Suma de columnas:")
+print(suma_columnas)
